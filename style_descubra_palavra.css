@@ -1,0 +1,285 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  overflow: auto;
+}
+
+.botao_jogo_parado{
+  --color: #def700;
+  width: 25%;
+}
+
+h1 {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+#game-board {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cabecalho{
+  margin: 10px 0px;
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  width: 100%;
+}
+
+.botoes-cabecalho{
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0px 20px;
+  padding: 8px 10px;
+  width: 50px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.letter-box {
+  border: 2px solid gray;
+  border-radius: 3px;
+  margin: 2px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.word-board {
+  border: 2px solid rgb(0, 0, 0);
+  background-color: #ffffff;
+  border-radius: 3px;
+  margin: auto;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 6rem;
+  text-transform: uppercase;
+}
+
+.filled-box {
+  border: 2px solid black;
+}
+
+.letter-row {
+  display: flex;
+}
+
+#board {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#board div {
+  display: flex;
+}
+
+.segunda-linha {
+  margin: 0.8rem 0;
+}
+
+.terceira-linha{
+  margin-bottom: 0.8rem;
+}
+
+.board-button {
+  font-size: 1.6rem;
+  font-weight: 800;
+  height: 35px;
+  width: 35px;
+  border: 1px solid black;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: black;
+}
+
+.board-button:hover {
+  background-color: #cccccc; /* Green */
+}
+
+.board-button-click {
+  background-color: #ff6161;
+  font-size: 1.6rem;
+  font-weight: 800;
+  height: 35px;
+  width: 35px;
+  border: 1px solid rgb(120, 0, 0);
+  cursor: pointer;
+  text-transform: uppercase;
+  color: black;
+}
+
+.board-button-over {
+  background-color: #61ff8b;
+  font-size: 1.6rem;
+  font-weight: 800;
+  height: 35px;
+  width: 35px;
+  border: 1px solid rgb(120, 0, 0);
+  cursor: pointer;
+  text-transform: uppercase;
+  color: black;
+}
+
+.board-button-line {
+  background-color: rgb(245, 242, 59);
+  font-size: 1.6rem;
+  font-weight: 800;
+  height: 35px;
+  width: 35px;
+  border: 1px solid rgb(120, 0, 0);
+  cursor: pointer;
+  text-transform: uppercase;
+  color: black;
+}
+
+.board-button-found {
+  background-color: rgb(106, 129, 230);
+  font-size: 1.6rem;
+  font-weight: 800;
+  height: 35px;
+  width: 35px;
+  border: 1px solid rgb(39, 70, 192);
+  cursor: pointer;
+  text-transform: uppercase;
+  color: black;
+}
+
+#del,
+#enter {
+  width: fit-content;
+  padding: 10px;
+}
+
+#del{
+  background-color: rgb(219, 91, 91);
+}
+
+#enter{
+  background-color: rgb(82, 177, 82);
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  box-shadow: 0.7px 1.4px 1.4px hsl(0deg 0% 0% / 0.48);
+  font-family: "Comic Sans MS", "Comic Sans", 'Comic Neue', sans-serif;
+}
+
+.letter {
+  align-items: center;
+  border: .125em solid #fafaff8e;
+  border-radius: 10%;
+  box-sizing: border-box;
+  color: #fafaff;
+  display: inline-flex;
+  font-weight: 500;
+  height: 2em;
+  justify-content: center;
+  margin: 0 .05em;
+  width: 2em;
+  font-size: 3em; /* Ajuste o tamanho da fonte conforme necessário */
+}
+
+
+.letter.right {
+  color: #000000;
+  background-color: rgb(85, 189, 85);
+  border: none;
+}
+
+p .letter {
+  font-size: 1em;
+}
+
+.example {
+  font-size: .333em;
+  margin: 10px;
+}
+
+.letter.place {
+  background-color: rgb(187, 187, 81);
+  border: none;
+  color: #000000;
+}
+
+.letter.wrong {
+  background-color: pink;
+  border: none;
+  color: #000000;
+}
+
+p {
+  color: #bbb;
+  text-align: center;
+  margin: 10px;
+  font-size: 1.4em;
+}
+
+#mensagemTutorial{
+  box-sizing: border-box;
+  padding: 5px;
+  overflow:auto;
+  height: auto;
+  background-color: rgb(58, 50, 50);
+}
+
+.transparent{
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 4px;
+  width: 40px;
+  padding: 10px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: transparent;
+  box-shadow: none;  
+  cursor: context-menu;
+}
+
+#btn_ajuda{
+  background-color: rgb(160, 160, 255);
+}
+
+#btn_dica{
+ background-color: rgb(252, 252, 63);
+}
+
+#bt_continuar{
+  display: none;
+}
+
+@media (max-width: 600px) {
+  p{
+    font-size: 1.1em;
+    margin: 5px;
+  }
+
+  .letter {
+    font-size: 3em;
+  }
+
+  .botao_jogo_parado{
+    width: initial;
+  }
+}
