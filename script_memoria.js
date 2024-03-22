@@ -47,8 +47,8 @@ const PALAVRAS_VALIDAS = [
 
 
 
-const boardX = 11;
-const boardY = 11;
+let boardX = 11;
+let boardY = 11;
 let gameBoard =[];
 let pressionado = [];
 let solto = [];
@@ -66,6 +66,9 @@ let palavras = [];
 let dificuldade = 2;
 
 let palavrasDescobertas = [];
+let acertos = 0;
+
+jogandoAtualmente = false;
 
 class Palavra{
     constructor(text, start, end){
@@ -85,17 +88,22 @@ const getAngle = (anchor, point) => Math.atan2(anchor.y - point.y, anchor.x - po
 // Funções iniciais
 
 function inicializa_jogo() {
+
+    gerarTabuleiro();
+    menu();
+}
+
+function gerarTabuleiro(){
+    acertos = 0;
     generateGameBoard();
     pickWords();
     spawnWords();
     fillWithRandom();
     generateHTMLBoard();
-
-    inicializaArrayImagens();
-    randomizaImagens();
 }
 
 function generateGameBoard(){
+    gameBoard.length = 0;
     for(let y=0; y<boardY; y++){
         let row = [];
         for(let x=0; x<boardX; x++){
@@ -106,18 +114,19 @@ function generateGameBoard(){
 }
 
 function pickWords(){
-    let indices = []
+    let indices = [];
     for(let x = 0; x<quantidadePalavras; x++){
         let valor = getRandomInt(PALAVRAS_VALIDAS.length);
         while(indices.includes(valor)){
-            valor = getRandomInt(PALAVRAS_VALIDAS.length)
+            valor = getRandomInt(PALAVRAS_VALIDAS.length);
         }
         indices.push(valor);
     }
     //console.log("INDICES: " + indices);
 
+    palavras.length = 0;
     for(let x =0; x<quantidadePalavras; x++){
-        let p = new  Palavra(PALAVRAS_VALIDAS[indices[x]], [0,0], [0,0])
+        let p = new  Palavra(PALAVRAS_VALIDAS[indices[x]], [0,0], [0,0]);
         palavras.push(p);
     }
     //palavras[0].start = [1,3];
@@ -227,10 +236,11 @@ function generateHTMLBoard(){
 
     let board = document.getElementById("board");
 
-    
+    board.innerHTML = "";
+
     for(let y = 0; y < boardY; y++){
         let row = document.createElement("div");
-        row.className = "primeira-linha";
+        //row.className = "primeira-linha";
 
         for(let x = 0; x < boardX; x++){
             let cell = document.createElement("button");
@@ -247,20 +257,73 @@ function generateHTMLBoard(){
         board.appendChild(row);
     }
 
+
     let words = document.getElementById("words");
+    words.innerHTML = "";
+    words.className = "word-board-line"
+
+    let row = document.createElement("div");
+    row.className = "word-board-line";
+
     for(let p=0; p<palavras.length; p++){
+
         let word = document.createElement("div");
         word.className = "word-board";
         word.id = "word"+p;
         word.textContent = palavras[p].text;
+
         words.appendChild(word);
     }
+    //words.appendChild(row);
 }
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+function configurarDificuldade(x){
+    dificuldade = x;
+    if(x==0){
+        boardX = 9;
+        boardY = 9;
+        quantidadePalavras = 6;
+    }
+    if(x==1){
+        boardX = 11;
+        boardY = 11;
+        quantidadePalavras = 8;
+    }
+
+    if(x==2){
+        boardX = 13;
+        boardY = 13;
+        quantidadePalavras = 10;
+    }
+
+    let menu = document.getElementById("menu");
+    menu.style.display = "none";
+    jogandoAtualmente = true;
+    gerarTabuleiro();
+
+}
+
+function menu(){
+    let menu = document.getElementById("menu");
+    menu.style.display = "flex";
+    if(jogandoAtualmente){
+        document.getElementById("botaoContinuar").style.display = "block";
+    }
+    else{
+        document.getElementById("botaoContinuar").style.display = "none";
+    }
+
+    console.log("" + document.getElementById("botaoFacil").style.display)
+}
+
+function fecharMenu(){
+    let menu = document.getElementById("menu");
+    menu.style.display = "none";
+}
 
 //--------------------------------------------------------------------------
 
@@ -390,12 +453,17 @@ function checkSelection(start,end){
             //palavras.splice(p,1);
             document.getElementById("word"+p).style.backgroundColor = "rgb(106, 129, 230)";
             success = true;
+            acertos ++;
             break;
         }
     }
     if(!success){
         line(start, end, "board-button");
         remarcarAchados();
+    }
+
+    if(acertos == quantidadePalavras){
+        console.log("GANHOU!!!");
     }
 }
 

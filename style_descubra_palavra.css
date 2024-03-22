@@ -9,7 +9,17 @@ body{
 
 .botao_jogo_parado{
   --color: #def700;
-  width: 25%;
+  width: 15%;
+}
+
+.botao_jogo{
+  --color: #000000;
+  --color2: rgb(255, 255, 255);
+  font-weight: 400;
+  background-color:rgb(0, 213, 255);
+  margin-top: 6px;
+  padding: 0.4em 0.4em;
+  width: 10%;
 }
 
 h1 {
@@ -68,8 +78,15 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 6rem;
+  width: 8rem;
   text-transform: uppercase;
+}
+
+.word-board-line{
+  display: grid;
+  
+  grid-template-columns: 150px 150px;
+  justify-content: center;
 }
 
 .filled-box {
